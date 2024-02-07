@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Quieres ser mi novia?</title>
+<!-- Bootstrap CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+
+  button.no {
+    background-color: #f44336;
+    margin-left: 10px;
+  }
+
+  button.no:hover {
+    background-color: #d32f2f;
+  }
+
+  button.yes {
+    transform: scale(1);
+    transition: transform 0.3s ease-out;
+  }
+
+  button.yes:hover {
+    transform: scale(1.1);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>¿Quieres ser mi novia?</h1>
+  <button class="yes" id="btn-aceptar">¡Sí, quiero!</button>
+  <button class="no" id="btn-rechazar">No</button>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+  let noButton = document.getElementById("btn-rechazar");
+  let yesButton = document.getElementById("btn-aceptar");
+
+  noButton.addEventListener("click", function() {
+    let buttonText = noButton.textContent;
+    if (buttonText === "No") {
+      noButton.textContent = "¿Estás segura?";
+    } else if (buttonText === "¿Estás segura?") {
+      noButton.textContent = "¿Realmente estás segura?";
+    } else if (buttonText === "¿Realmente estás segura?") {
+      noButton.textContent = "No";
+    }
+    yesButton.style.transform = "scale(" + (1 + 0.1 * (this.clickCount || 1)) + ")";
+    this.clickCount = (this.clickCount || 1) + 1;
+  });
+
+  yesButton.addEventListener("click", function() {
+    // Muestra el modal de Bootstrap al hacer clic en "Sí"
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+      keyboard: false
+    });
+    myModal.show();
+  });
+</script>
+
+<!-- Modal Bootstrap -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Me encantas 😊</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>¡Te quiero mucho mi niña! 😊</p>
+        <img src="https://media.giphy.com/media/1PVLxYWP24ItqLmmvs/giphy.gif" alt="Osito GIF">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
